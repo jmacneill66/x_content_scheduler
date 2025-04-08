@@ -37,7 +37,7 @@ def create_test_user():
             email="test@example.com",
             hashed_password="password123",  # In a real app, hash this!
             api_key=os.environ.get("TWITTER_API_KEY"),
-            api_key_secret=os.environ.get("TWITTER_API_SECRET"),
+            api_secret=os.environ.get("TWITTER_API_SECRET"),
             access_token=os.environ.get("TWITTER_ACCESS_TOKEN"),
             access_token_secret=os.environ.get("TWITTER_ACCESS_TOKEN_SECRET"),
         )
