@@ -6,9 +6,10 @@ from datetime import datetime, timedelta
 
 client = TestClient(app)
 
+
 def test_create_scheduled_post():
     response = client.post(
-        "/scheduled-posts/",
+        "/schedule/",
         json={
             "user_id": "test_user",
             "content": "Test scheduled post",
