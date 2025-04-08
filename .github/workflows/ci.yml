@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/ --cov=app
+          run: PYTHONPATH=$PYTHONPATH:$(pwd) pytest tests/ --cov=app
 
       - name: Lint with flake8
         run: |
