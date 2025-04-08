@@ -1,0 +1,21 @@
+# requirements.txt (production dependencies)
+fastapi
+uvicorn
+sqlalchemy
+python-dotenv
+celery
+redis
+tweepy  # For Twitter API integration
+pydantic
+python-jose  # For JWT token handling
+passlib[bcrypt]  # For password hashing
+python-multipart  # If you're handling file uploads
+httpx  # For making HTTP requests to Twitter API
+
+# development dependencies: 
+pytest
+pytest-cov
+flake8
+black
+isort
+

@@ -1,0 +1,61 @@
+# Virtual environments
+.venv/
+venv/  # Add this since you have a venv folder
+virtualenv/
+env/
+
+# Docker
+.docker/
+docker-data/
+
+# Database files (expand this section)
+*.db
+*.sqlite
+*.sqlite3
+app.db  # Explicitly list your database file
+
+# IDE specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+x_content_scheduler.code-workspace
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Cache
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Python-specific
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+*.egg
+
+# Personal notes
+my_notes.txt
+notes.txt
+TODO.md

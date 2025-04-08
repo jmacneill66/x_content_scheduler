@@ -1,0 +1,39 @@
+# Docker Compose file for the FastAPI application with Redis and Celery
+services:
+  api:
+    build: .  # This tells Docker Compose to build using the Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      #- ./data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///app.db
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - TWITTER_API_KEY=${TWITTER_API_KEY}
+      - TWITTER_API_SECRET=${TWITTER_API_SECRET}
+      - TWITTER_ACCESS_TOKEN=${TWITTER_ACCESS_TOKEN}
+      - TWITTER_ACCESS_TOKEN_SECRET=${TWITTER_ACCESS_TOKEN_SECRET}
+      - TWITTER_ACCESS_BEARER_TOKEN=${TWITTER_ACCESS_BEARER_TOKEN}
+    depends_on:
+      - redis
+      - celery_worker
+    command: >
+      sh -c "python -m app.migrations.fix_user_id &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  celery_worker:
+    build: .
+    command: celery -A app.tasks.celery_app worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    environment:
+      - DATABASE_URL=sqlite:///app.db
+      - CELERY_BROKER_URL=redis://redis:6379/0

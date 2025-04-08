@@ -1,0 +1,17 @@
+# This should be in docker-compose.test.yml
+version: '3'
+
+services:
+  test:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=sqlite:///test.db
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    command: pytest
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
