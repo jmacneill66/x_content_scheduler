@@ -27,8 +27,7 @@ jobs:
           pip install pytest pytest-cov flake8 black isort
 
       - name: Run tests
-        run: |
-          run: PYTHONPATH=$PYTHONPATH:$(pwd) pytest tests/ --cov=app
+        run: PYTHONPATH=$PYTHONPATH:$(pwd) pytest tests/ --cov=app
 
       - name: Lint with flake8
         run: |
