@@ -2,9 +2,10 @@
 
 import os
 
+from sqlalchemy import text
+
 from app.database import SessionLocal
 from app.models import ScheduledPost, User
-from sqlalchemy import text
 
 
 def fix_scheduled_post_user_ids():

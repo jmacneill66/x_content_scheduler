@@ -1,8 +1,10 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from . import database, schemas, crud
-from .tasks import post_scheduled_content
 from typing import List  # Make sure to import List
+
+from fastapi import Depends, FastAPI
+from sqlalchemy.orm import Session
+
+from . import crud, database, schemas
+from .tasks import post_scheduled_content
 
 app = FastAPI()
 database.Base.metadata.create_all(bind=database.engine)

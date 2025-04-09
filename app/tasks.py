@@ -1,9 +1,11 @@
-import celery
-import tweepy
 import logging
 from datetime import datetime
-from . import crud, database
+
+import celery
+import tweepy
 from celery import Celery
+
+from . import crud, database
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
