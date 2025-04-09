@@ -1,8 +1,10 @@
 # tests/test_api.py
+from datetime import datetime, timedelta
+
 import pytest
 from fastapi.testclient import TestClient
+
 from app.main import app
-from datetime import datetime, timedelta
 
 client = TestClient(app)
 
