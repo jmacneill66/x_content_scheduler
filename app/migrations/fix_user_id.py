@@ -11,11 +11,15 @@ def fix_scheduled_post_user_ids():
     db = SessionLocal()
 
     # SQLite-specific check for text user_ids
-    db.execute(text("""
+    db.execute(
+        text(
+            """
         UPDATE scheduled_posts
         SET user_id = 1
         WHERE typeof(user_id) = 'text'
-    """))
+    """
+        )
+    )
 
     db.commit()
     db.close()

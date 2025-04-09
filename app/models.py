@@ -3,9 +3,10 @@ from sqlalchemy.orm import relationship
 from .database import Base
 from datetime import datetime
 
+
 class ScheduledPost(Base):
     __tablename__ = "scheduled_posts"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     content = Column(String)
@@ -16,9 +17,10 @@ class ScheduledPost(Base):
     # Create relationship (optional, but helpful)
     user = relationship("User", back_populates="scheduled_posts")
 
+
 class User(Base):
     __tablename__ = "users"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)

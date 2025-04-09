@@ -9,6 +9,7 @@ from celery import Celery
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 def get_twitter_api(api_key, api_secret, access_token, access_token_secret):
     """
     Create and return a tweepy API object with the provided credentials.
@@ -17,22 +18,24 @@ def get_twitter_api(api_key, api_secret, access_token, access_token_secret):
         api_key, api_secret, access_token, access_token_secret
     )
     return tweepy.API(auth)
-    
+
+
 # Initialize Celery
-celery_app = Celery('x_content_scheduler')
+celery_app = Celery("x_content_scheduler")
 # You'd also need to configure Celery with Redis/RabbitMQ here
-celery_app.conf.broker_url = 'redis://redis:6379/0'  # or whatever broker you're using
+celery_app.conf.broker_url = "redis://redis:6379/0"  # or whatever broker you're using
+
 
 # Your existing function with Celery decorator
 @celery_app.task
 def post_scheduled_content(post_id=None) -> bool:
     """
     Function to post scheduled content to X (Twitter).
-    
+
     Args:
-        post_id (int, optional): ID of a specific post to publish. 
+        post_id (int, optional): ID of a specific post to publish.
                                  If None, processes all due posts.
-    
+
     Returns:
         bool: True if successful, False otherwise.
     """
@@ -63,7 +66,7 @@ def post_scheduled_content(post_id=None) -> bool:
                         user.api_key,
                         user.api_secret,
                         user.access_token,
-                        user.access_token_secret
+                        user.access_token_secret,
                     )
                     api.update_status(post.content)
                     post.posted = True
@@ -78,4 +81,3 @@ def post_scheduled_content(post_id=None) -> bool:
     except Exception as e:
         logger.error(f"An error occurred in post_scheduled_content: {e}")
         return False
-    

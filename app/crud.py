@@ -22,7 +22,7 @@ def create_post(db: Session, post: schemas.PostCreate):
         content=post.content,
         media_url=post.media_url,
         scheduled_time=post.scheduled_time,
-        posted=False  # Set default value here
+        posted=False,  # Set default value here
     )
     # Add the post to the database session
     db.add(db_post)
@@ -45,7 +45,11 @@ def get_scheduled_post_by_id(db, post_id):
     Returns:
         The scheduled post object or None if not found
     """
-    return db.query(models.ScheduledPost).filter(models.ScheduledPost.id == post_id).first()
+    return (
+        db.query(models.ScheduledPost)
+        .filter(models.ScheduledPost.id == post_id)
+        .first()
+    )
 
 
 def get_due_scheduled_posts(db, current_time):
@@ -60,10 +64,14 @@ def get_due_scheduled_posts(db, current_time):
     Returns:
         List of scheduled post objects that are due for publishing
     """
-    return db.query(models.ScheduledPost).filter(
-        models.ScheduledPost.scheduled_time <= current_time,
-        models.ScheduledPost.posted == False
-    ).all()
+    return (
+        db.query(models.ScheduledPost)
+        .filter(
+            models.ScheduledPost.scheduled_time <= current_time,
+            models.ScheduledPost.posted == False,
+        )
+        .all()
+    )
 
 
 def get_user(db, user_id):
