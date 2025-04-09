@@ -14,7 +14,7 @@ def test_create_scheduled_post():
             "user_id": 1,
             "content": "Test scheduled post",
             "scheduled_time": (datetime.now() + timedelta(hours=1)).isoformat(),
-            "media_url": None
+            "media_url": None,
         },
     )
     assert response.status_code == 200
