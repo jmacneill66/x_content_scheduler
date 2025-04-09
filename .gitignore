@@ -4,6 +4,7 @@ venv/  # Add this since you have a venv folder
 virtualenv/
 env/
 
+
 # Docker
 .docker/
 docker-data/
@@ -13,6 +14,9 @@ docker-data/
 *.sqlite
 *.sqlite3
 app.db  # Explicitly list your database file
+
+# Environment variables
+.env
 
 # IDE specific files
 .vscode/
