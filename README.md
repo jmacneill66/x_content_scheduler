@@ -11,7 +11,7 @@ A content scheduling system for X (formerly Twitter), allowing users to draft, s
 - **Database**: Stores drafts and scheduled posts in SQLite; persistent volume through docker file.
 - **Queue System**: Celery + Redis (or RQ) for handling timed background tasks.
 - **OAuth Authentication**: Users authenticate via OAuth, and their credentials are securely stored for future post publishing.
-- **Future implementation: PostgreSQL could be deployed with Amazon CDN.
+- **Future implementation**: PostgreSQL could be deployed with Amazon CDN.
 
 ## Tech Stack
 
