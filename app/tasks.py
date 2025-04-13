@@ -24,11 +24,11 @@ def get_twitter_api(api_key, api_secret, access_token, access_token_secret):
 
 # Initialize Celery
 celery_app = Celery("x_content_scheduler")
-# You'd also need to configure Celery with Redis/RabbitMQ here
-celery_app.conf.broker_url = "redis://redis:6379/0"  # or whatever broker you're using
+# configure Celery with Redis (or RabbitMQ)
+celery_app.conf.broker_url = "redis://redis:6379/0"
 
 
-# Your existing function with Celery decorator
+# existing function with Celery decorator
 @celery_app.task
 def post_scheduled_content(post_id=None) -> bool:
     """
@@ -54,7 +54,8 @@ def post_scheduled_content(post_id=None) -> bool:
             else:
                 posts = crud.get_due_scheduled_posts(db, current_time)
                 if not posts:
-                    logger.info("No posts scheduled for publishing at this time")
+                    logger.info(
+                        "No posts scheduled for publishing at this time")
                     return True
 
             for post in posts:
@@ -73,9 +74,11 @@ def post_scheduled_content(post_id=None) -> bool:
                     api.update_status(post.content)
                     post.posted = True
                     db.commit()
-                    logger.info(f"Post with ID {post.id} published successfully.")
+                    logger.info(
+                        f"Post with ID {post.id} published successfully.")
                 except Exception as post_err:
-                    logger.error(f"Failed to post content ID {post.id}: {post_err}")
+                    logger.error(
+                        f"Failed to post content ID {post.id}: {post_err}")
                     continue  # Log and skip to the next
 
         return True

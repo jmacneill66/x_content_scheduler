@@ -145,10 +145,10 @@ OAuth flow with token validation and scheduled task execution using **Tweepy**.
 
 ## Known Limitations and Features in Progress
 
-- React frontend is WIP; UX/UI improvements planned.
+- React frontend is WIP; UX/UI improvements planned. It can be found at: github.com/jmacneill66/x_content_scheduler_client
 - Retry mechanism and rate-limit handling to be enhanced.
 
-## Contribution Guidelines
+## Contributing
 
 1. Fork the repository.
 2. Create a feature branch (`git checkout -b feature/your-feature`).
